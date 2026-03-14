@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mirror Store</title>
+<style>
+/* ---------------- Body ---------------- */
+body{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin:0;
+    padding:30px;
+    background:#f5f5f5;
+    color:#333;
+}
+
+/* ---------------- Titles ---------------- */
+.title{
+    text-align:center;
+    font-size:45px;
+    margin-bottom:50px;
+}
+
+.category{
+    text-align:center;
+    font-size:30px;
+    font-weight:bold;
+    margin:50px 0 25px;
+}
+
+/* ---------------- Card Container ---------------- */
+.card-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+    max-width:1200px;
+    margin:auto;
+}
+
+/* ---------------- Cards ---------------- */
+.card{
+    background:white;
+    border-radius:10px;
+    padding:15px;
+    text-align:center;
+    cursor:pointer;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    transition:0.3s;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    height:360px;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 10px 20px rgba(0,0,0,0.15);
+}
+
+.card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+.card h3{
+    font-size:18px;
+    margin:10px 0;
+}
+
+.card p{
+    font-size:16px;
+    font-weight:bold;
+    color:#555;
+}
+
+/* ---------------- Buttons ---------------- */
+.btn-group{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    margin-top:10px;
+}
+
+.add-to-cart, .add-to-wishlist{
+    flex:1;
+    padding:10px;
+    background:black;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.add-to-cart:hover, .add-to-wishlist:hover{
+    background:#444;
+}
+
+/* ---------------- Detail Popup ---------------- */
+.detail-popup{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.7);
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+.detail-content{
+    background:white;
+    border-radius:10px;
+    padding:20px;
+    width:90%;
+    max-width:700px;
+    max-height:90%;
+    overflow-y:auto;
+    position:relative;
+}
+
+.detail-content img{
+    width:100%;
+    height:auto;
+    border-radius:8px;
+    margin-bottom:15px;
+}
+
+.detail-content h2{
+    margin:10px 0;
+}
+
+.detail-content p{
+    margin:5px 0;
+}
+
+/* Close Button */
+.close-btn{
+    position:absolute;
+    top:10px;
+    right:15px;
+    font-size:25px;
+    cursor:pointer;
+    color:#333;
+}
+
+@media(max-width:768px){
+    .title{ font-size:35px; }
+    .category{ font-size:22px; }
+}
+</style>
+</head>
+<body>
+
+<h1 class="title">Shop By Categories</h1>
+
+<!-- ================== Wooden Frame Mirror ================== -->
+<h2 class="category">Wooden Frame Mirror</h2>
+<div class="card-container">
+<div class="card" onclick="openDetail('Bedroom Mirror','Rs 11,999','img folder/df30c4920ceb7e946d9d2140171ffbbf.jpg')">
+    <img src="img folder/df30c4920ceb7e946d9d2140171ffbbf.jpg">
+    <h3>Bedroom Mirror</h3>
+    <p>Rs 11,999</p>
+    <div class="btn-group">
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-wishlist">Wishlist</button>
+    </div>
+</div>
+<div class="card" onclick="openDetail('Living Room Mirror','Rs 13,999','img folder/c226b172246322b4de48bf42e723fb27.jpg')">
+    <img src="img folder/c226b172246322b4de48bf42e723fb27.jpg">
+    <h3>Living Room Mirror</h3>
+    <p>Rs 13,999</p>
+    <div class="btn-group">
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-wishlist">Wishlist</button>
+    </div>
+</div>
+<div class="card" onclick="openDetail('Bathroom Mirror','Rs 10,999','img folder/d3f4a801949dcaa870880062de96e32e.jpg')">
+    <img src="img folder/d3f4a801949dcaa870880062de96e32e.jpg">
+    <h3>Bathroom Mirror</h3>
+    <p>Rs 10,999</p>
+    <div class="btn-group">
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-wishlist">Wishlist</button>
+    </div>
+</div>
+<div class="card" onclick="openDetail('Dressing Mirror','Rs 15,999','img folder/812eb5265c0260fc9479456b242e58b5.jpg')">
+    <img src="img folder/812eb5265c0260fc9479456b242e58b5.jpg">
+    <h3>Dressing Mirror</h3>
+    <p>Rs 15,999</p>
+    <div class="btn-group">
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-wishlist">Wishlist</button>
+    </div>
+</div>
+</div>
+
+<!-- ================== Acrylic Bordered Mirror ================== -->
+<h2 class="category">Acrylic Bordered Mirror</h2>
+<div class="card-container">
+<div class="card" onclick="openDetail('Bedroom Mirror','Rs 19,999','img folder/4f8e4cd2212ed8b328c52bc0443b92c0.jpg')">
+    <img src="img folder/4f8e4cd2212ed8b328c52bc0443b92c0.jpg">
+    <h3>Bedroom Mirror</h3>
+    <p>Rs 19,999</p>
+    <div class="btn-group">
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-wishlist">Wishlist</button>
+    </div>
+</div>
+<div class="card" onclick="openDetail('Living Room Mirror','Rs 20,999','img folder/a61980d51a51ecc51e5b64eca044f92c.jpg')">
+    <img src="img folder/a61980d51a51ecc51e5b64eca044f92c.jpg">
+    <h3>Living Room Mirror</h3>
+    <p>Rs 20,999</p>
+    <div class="btn-group">
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-wishlist">Wishlist</button>
+    </div>
+</div>
+<div class="card" onclick="openDetail('Bathroom Mirror','Rs 17,999','img folder/d3f4a801949dcaa870880062de96e32e.jpg')">
+    <img src="img folder/d3f4a801949dcaa870880062de96e32e.jpg">
+    <h3>Bathroom Mirror</h3>
+    <p>Rs 17,999</p>
+    <div class="btn-group">
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-wishlist">Wishlist</button>
+    </div>
+</div>
+<div class="card" onclick="openDetail('Dressing Mirror','Rs 21,999','img folder/812eb5265c0260fc9479456b242e58b5.jpg')">
+    <img src="img folder/812eb5265c0260fc9479456b242e58b5.jpg">
+    <h3>Dressing Mirror</h3>
+    <p>Rs 21,999</p>
+    <div class="btn-group">
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-wishlist">Wishlist</button>
+    </div>
+</div>
+</div>
+
+<!-- ================== Metal Mirror ================== -->
+<h2 class="category">Metal Mirror</h2>
+<div class="card-container">
+<div class="card" onclick="openDetail('Bedroom Mirror','Rs 18,999','img folder/7018ab837438848adf2f17470ba2690e.jpg')">
+    <img src="img folder/7018ab837438848adf2f17470ba2690e.jpg">
+    <h3>Bedroom Mirror</h3>
+    <p>Rs 18,999</p>
+    <div class="btn-group">
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-wishlist">Wishlist</button>
+    </div>
+</div>
+<div class="card" onclick="openDetail('Living Room Mirror','Rs 21,999','img folder/160de772e90126e60910f143b5e8ea05.jpg')">
+    <img src="img folder/160de772e90126e60910f143b5e8ea05.jpg">
+    <h3>Living Room Mirror</h3>
+    <p>Rs 21,999</p>
+    <div class="btn-group">
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-wishlist">Wishlist</button>
+    </div>
+</div>
+<div class="card" onclick="openDetail('Bathroom Mirror','Rs 17,999','img folder/df30c4920ceb7e946d9d2140171ffbbf.jpg')">
+    <img src="img folder/df30c4920ceb7e946d9d2140171ffbbf.jpg">
+    <h3>Bathroom Mirror</h3>
+    <p>Rs 17,999</p>
+    <div class="btn-group">
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-wishlist">Wishlist</button>
+    </div>
+</div>
+<div class="card" onclick="openDetail('Dressing Mirror','Rs 22,999','img folder/c226b172246322b4de48bf42e723fb27.jpg')">
+    <img src="img folder/c226b172246322b4de48bf42e723fb27.jpg">
+    <h3>Dressing Mirror</h3>
+    <p>Rs 22,999</p>
+    <div class="btn-group">
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-wishlist">Wishlist</button>
+    </div>
+</div>
+</div>
+
+<!-- ================== Decorative Mirror ================== -->
+<h2 class="category">Decorative Mirror</h2>
+<div class="card-container">
+<div class="card" onclick="openDetail('Bedroom Mirror','Rs 22,999','img folder/812eb5265c0260fc9479456b242e58b5.jpg')">
+    <img src="img folder/812eb5265c0260fc9479456b242e58b5.jpg">
+    <h3>Bedroom Mirror</h3>
+    <p>Rs 22,999</p>
+    <div class="btn-group">
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-wishlist">Wishlist</button>
+    </div>
+</div>
+<div class="card" onclick="openDetail('Living Room Mirror','Rs 24,999','img folder/7018ab837438848adf2f17470ba2690e.jpg')">
+    <img src="img folder/7018ab837438848adf2f17470ba2690e.jpg">
+    <h3>Living Room Mirror</h3>
+    <p>Rs 24,999</p>
+    <div class="btn-group">
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-wishlist">Wishlist</button>
+    </div>
+</div>
+<div class="card" onclick="openDetail('Bathroom Mirror','Rs 21,999','img folder/d3f4a801949dcaa870880062de96e32e.jpg')">
+    <img src="img folder/d3f4a801949dcaa870880062de96e32e.jpg">
+    <h3>Bathroom Mirror</h3>
+    <p>Rs 21,999</p>
+    <div class="btn-group">
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-wishlist">Wishlist</button>
+    </div>
+</div>
+<div class="card" onclick="openDetail('Dressing Mirror','Rs 26,999','img folder/df30c4920ceb7e946d9d2140171ffbbf.jpg')">
+    <img src="img folder/df30c4920ceb7e946d9d2140171ffbbf.jpg">
+    <h3>Dressing Mirror</h3>
+    <p>Rs 26,999</p>
+    <div class="btn-group">
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-wishlist">Wishlist</button>
+    </div>
+</div>
+</div>
+
+<!-- ================== LED Mirror ================== -->
+<h2 class="category">LED Mirror</h2>
+<div class="card-container">
+<div class="card" onclick="openDetail('Bedroom Mirror','Rs 24,999','img folder/7018ab837438848adf2f17470ba2690e.jpg')">
+    <img src="img folder/7018ab837438848adf2f17470ba2690e.jpg">
+    <h3>Bedroom Mirror</h3>
+    <p>Rs 24,999</p>
+    <div class="btn-group">
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-wishlist">Wishlist</button>
+    </div>
+</div>
+<div class="card" onclick="openDetail('Living Room Mirror','Rs 26,999','img folder/e1358a9b10fc5b25d5523befaf80b2a4.jpg')">
+    <img src="img folder/e1358a9b10fc5b25d5523befaf80b2a4.jpg">
+    <h3>Living Room Mirror</h3>
+    <p>Rs 26,999</p>
+    <div class="btn-group">
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-wishlist">Wishlist</button>
+    </div>
+</div>
+<div class="card" onclick="openDetail('Bathroom Mirror','Rs 23,999','img folder/df30c4920ceb7e946d9d2140171ffbbf.jpg')">
+    <img src="img folder/df30c4920ceb7e946d9d2140171ffbbf.jpg">
+    <h3>Bathroom Mirror</h3>
+    <p>Rs 23,999</p>
+    <div class="btn-group">
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-wishlist">Wishlist</button>
+    </div>
+</div>
+<div class="card" onclick="openDetail('Dressing Mirror','Rs 27,999','img folder/c226b172246322b4de48bf42e723fb27.jpg')">
+    <img src="img folder/c226b172246322b4de48bf42e723fb27.jpg">
+    <h3>Dressing Mirror</h3>
+    <p>Rs 27,999</p>
+    <div class="btn-group">
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-wishlist">Wishlist</button>
+    </div>
+</div>
+</div>
+
+<!-- ================== Bluetooth Mirror ================== -->
+<h2 class="category">Bluetooth Mirror</h2>
+<div class="card-container">
+<div class="card" onclick="openDetail('Bedroom Mirror','Rs 28,999','img folder/160de772e90126e60910f143b5e8ea05.jpg')">
+    <img src="img folder/160de772e90126e60910f143b5e8ea05.jpg">
+    <h3>Bedroom Mirror</h3>
+    <p>Rs 28,999</p>
+    <div class="btn-group">
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-wishlist">Wishlist</button>
+    </div>
+</div>
+<div class="card" onclick="openDetail('Living Room Mirror','Rs 29,999','img folder/a61980d51a51ecc51e5b64eca044f92c.jpg')">
+    <img src="img folder/a61980d51a51ecc51e5b64eca044f92c.jpg">
+    <h3>Living Room Mirror</h3>
+    <p>Rs 29,999</p>
+    <div class="btn-group">
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-wishlist">Wishlist</button>
+    </div>
+</div>
+<div class="card" onclick="openDetail('Bathroom Mirror','Rs 27,999','img folder/4f8e4cd2212ed8b328c52bc0443b92c0.jpg')">
+    <img src="img folder/4f8e4cd2212ed8b328c52bc0443b92c0.jpg">
+    <h3>Bathroom Mirror</h3>
+    <p>Rs 27,999</p>
+    <div class="btn-group">
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-wishlist">Wishlist</button>
+    </div>
+</div>
+<div class="card" onclick="openDetail('Dressing Mirror','Rs 31,999','img folder/e1358a9b10fc5b25d5523befaf80b2a4.jpg')">
+    <img src="img folder/e1358a9b10fc5b25d5523befaf80b2a4.jpg">
+    <h3>Dressing Mirror</h3>
+    <p>Rs 31,999</p>
+    <div class="btn-group">
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-wishlist">Wishlist</button>
+    </div>
+</div>
+</div>
+
+<!-- ================== Detail Popup ================== -->
+<div class="detail-popup" id="detailPopup">
+    <div class="detail-content">
+        <span class="close-btn" onclick="closeDetail()">&times;</span>
+        <img id="detailImage" src="">
+        <h2 id="detailName"></h2>
+        <p id="detailPrice"></p>
+        <p id="detailDesc">This is a premium mirror perfect for your home decor.</p>
+        <div class="btn-group">
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="add-to-wishlist">Wishlist</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function openDetail(name, price, img){
+    document.getElementById('detailName').innerText = name;
+    document.getElementById('detailPrice').innerText = price;
+    document.getElementById('detailImage').src = img;
+    document.getElementById('detailPopup').style.display = 'flex';
+}
+function closeDetail(){
+    document.getElementById('detailPopup').style.display = 'none';
+}
+</script>
+
+</body>
+</html>
